@@ -33,5 +33,7 @@ module Fluxday
       # Only Authorized Applications
       Doorkeeper::AuthorizedApplicationsController.layout "doorkeeper"
     end
+
+    config.assets.prefix = "/fluxday-assets"
   end
 end

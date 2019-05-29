@@ -1,5 +1,7 @@
+Rails.application.routes.default_scope = 'fluxday'
+
 Fluxday::Application.routes.draw do
-  scope :fluxday do
+  #scope :fluxday do
     resources :oauth_applications
 
     use_doorkeeper
@@ -147,5 +149,5 @@ Fluxday::Application.routes.draw do
     #     # (app/controllers/admin/products_controller.rb)
     #     resources :products
     #   end
-  end
+  #end
 end
