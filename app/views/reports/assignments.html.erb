@@ -38,6 +38,6 @@
 </div>
 <script type="text/javascript">
     $('.report_type_select').on("change", function () {
-        $.get('/reports/get_selection_list?type=' + $(this).val())
+        $.get('<%= root_path %>/reports/get_selection_list?type=' + $(this).val())
     });
 </script>

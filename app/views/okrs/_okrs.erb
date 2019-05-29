@@ -27,6 +27,6 @@
 </div>
 <script type="text/javascript">
     $('#okr_user_id').on('change',function(){
-        window.location = '/users/'+$('#okr_user_id').val()+'/okrs'
+        window.location = '<%= root_path %>/users/'+$('#okr_user_id').val()+'/okrs'
     });
 </script>

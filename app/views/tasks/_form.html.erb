@@ -73,7 +73,7 @@
     //    $('.date-input').datetimepicker();
     $('.team-selector').on("change", function () {
         load_assignees()
-//        $.get('/teams/get_member_list?team_id=' + $(this).val())
+//        $.get('<%= root_path %>/teams/get_member_list?team_id=' + $(this).val())
     });
 
     //    $('.date-input').datetimepicker().on('onChangeDateTime', function () {load_assignees()});
@@ -98,7 +98,7 @@
             $('.assignees-select').html('Choose end date, start date and team for the task');
         } else {
             $('.assignees-select').html('satisfied');
-            $.get('/teams/get_member_list?team_id=' + $('#task_team_id').val() + '&start_date=' + $('#task_start_date').val() + '&end_date=' + $('#task_end_date').val() + "&task_id=<%= @task.try(&:id) %>")
+            $.get('<%= root_path %>/teams/get_member_list?team_id=' + $('#task_team_id').val() + '&start_date=' + $('#task_start_date').val() + '&end_date=' + $('#task_end_date').val() + "&task_id=<%= @task.try(&:id) %>")
         }
     }
 </script>
