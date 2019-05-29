@@ -1,13 +1,16 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.3'
+gem 'rails', '4.0.13'
+
+# Enable the deprecated finders, see rails/rails#17357
+gem 'activerecord-deprecated_finders', require: 'active_record/deprecated_finders'
 
 # Use mysql as the database for Active Record
 gem 'mysql2', '0.3.21'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.5'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -32,6 +35,10 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+gem 'activemodel', '= 4.0.13'
+gem 'activerecord', '= 4.0.13'
+gem 'activesupport', '= 4.0.13'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
@@ -69,3 +76,9 @@ gem 'doorkeeper', '1.1.0'
 gem "omniauth-oauth2"#, '1.0.2'
 #gem 'omniauth-fluxapp' , :path => '/home/tp/Desktop/flux'
 gem 'omniauth-fluxapp' , :git  => 'https://github.com/stpnlr/omniauth-fluxapp.git'
+
+group :production do
+  gem 'puma'
+  gem 'pg'
+  gem 'rails_12factor'
+end

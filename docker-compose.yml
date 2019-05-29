@@ -1,25 +1,23 @@
-version: '2'
+version: '3.7'
 services:
   fluxday-db:
-    container_name: fluxday-db
-    image: mysql
+    #container_name: fluxday-db
+    image: mysql:5.6
     env_file:
       - db.env
 
   fluxday-app:
-    container_name: fluxday-app
-    tty: true
-    stdin_open: true
+    #container_name: fluxday-app
+    image: trinhpham/fluxday
     build:
       context: .
-      dockerfile: Dockerfile.development
-    volumes:
+      dockerfile: Dockerfile
+    
+    volumes: #Use this option is for dev only
       - .:/share
     env_file:
       - app.env
     depends_on:
-      - fluxday-db
-    links:
       - fluxday-db
     ports:
       - 3000:3000

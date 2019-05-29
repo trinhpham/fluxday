@@ -1,18 +1,23 @@
-FROM phusion/baseimage:0.9.19
-MAINTAINER Halisson Vitor
+FROM phusion/baseimage:master
+
+# Use APT mirror for better performance
+RUN sed -i 's|http://security.ubuntu.com/ubuntu/|mirror://mirrors.ubuntu.com/mirrors.txt|' /etc/apt/sources.list \
+    && sed -i 's|http://extras.ubuntu.com/ubuntu/|mirror://mirrors.ubuntu.com/mirrors.txt|' /etc/apt/sources.list \
+    && sed -i 's|http://archive.ubuntu.com/ubuntu/|mirror://mirrors.ubuntu.com/mirrors.txt|' /etc/apt/sources.list
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
 ENV LANGUAGE en_US.UTF-8
+ENV DEBIAN_FRONTEND noninteractive 
 
 # Install os dependencies
 RUN apt-add-repository ppa:brightbox/ruby-ng
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y nodejs \
-    ruby2.1 \
-    ruby2.1-dev \
+    ruby2.3 \
+    ruby2.3-dev \
     build-essential \
     curl \
     zlib1g-dev \
@@ -30,7 +35,7 @@ RUN apt-get install -y nodejs \
     imagemagick \
     wkhtmltopdf
 
-RUN gem install bundler
+RUN gem install bundler -v 1.17.3
 
 ENV APP_HOME /share
 RUN mkdir $APP_HOME
