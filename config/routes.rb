@@ -1,4 +1,4 @@
-Rails.application.routes.default_scope = 'fluxday'
+Rails.application.routes.default_scope = ENV['FLUXDAY_ROOT']
 
 Fluxday::Application.routes.draw do
   #scope :fluxday do

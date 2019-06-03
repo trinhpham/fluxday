@@ -1,10 +1,20 @@
 version: '3.7'
 services:
+  gateway:
+    image: nginx:stable
+    ports:
+      - '80:80'
+    command: [ nginx, '-g', 'daemon off;' ]
+    volumes:
+      - ./nginx:/etc/nginx
+
   fluxday-db:
     #container_name: fluxday-db
     image: mysql:5.6
     env_file:
       - db.env
+    volumes:
+      - ./mysql:/var/lib/mysql
 
   fluxday-app:
     #container_name: fluxday-app
@@ -15,6 +25,7 @@ services:
     
     volumes: #Use this option is for dev only
       - .:/share
+      - /share/tmp/
     env_file:
       - app.env
     depends_on:
