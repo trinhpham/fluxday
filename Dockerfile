@@ -1,4 +1,4 @@
-FROM phusion/baseimage:master
+FROM phusion/baseimage:18.04-1.0.0
 
 # Use APT mirror for better performance
 RUN sed -i 's|http://security.ubuntu.com/ubuntu/|mirror://mirrors.ubuntu.com/mirrors.txt|' /etc/apt/sources.list \
@@ -11,25 +11,27 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install os dependencies
 RUN apt-add-repository ppa:brightbox/ruby-ng && \
     apt-get update && \
-    apt-get install -y nodejs \
-    ruby2.3 \
-    ruby2.3-dev \
+    apt-get install -y --no-install-recommends \
     build-essential \
     curl \
-    zlib1g-dev \
-    libssl-dev \
+    git \
+    gnuplot \
+    imagemagick \
+    imagemagick-doc \
+    libmagickwand-dev \
+    libmysqlclient-dev \
+    libpq-dev \
     libreadline-dev \
-    libyaml-dev \
+    libssl-dev \
     libxml2-dev \
     libxslt-dev \
-    libpq-dev \
-    git python-virtualenv \
-    libmysqlclient-dev \
-    libmagickwand-dev \
-    gnuplot \
-    imagemagick-doc \
-    imagemagick \
-    wkhtmltopdf
+    libyaml-dev \
+    nodejs \
+    python-virtualenv \
+    ruby2.3 \
+    ruby2.3-dev \
+    wkhtmltopdf \
+    zlib1g-dev
 
 RUN gem install bundler -v 1.17.3
 
