@@ -31,7 +31,8 @@ RUN apt-add-repository ppa:brightbox/ruby-ng && \
     ruby2.3 \
     ruby2.3-dev \
     wkhtmltopdf \
-    zlib1g-dev
+    zlib1g-dev \
+    && apt clean all & rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN gem install bundler -v 1.17.3
 
@@ -43,9 +44,6 @@ ADD Gemfile* $APP_HOME/
 RUN bundle install
 
 ADD . $APP_HOME
-
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Use baseimage-docker's init system then start the server
 CMD ["bash", "-c", "/sbin/my_init & rails server"]
