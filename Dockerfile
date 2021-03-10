@@ -32,7 +32,7 @@ RUN apt-add-repository ppa:brightbox/ruby-ng && \
     ruby2.3-dev \
     wkhtmltopdf \
     zlib1g-dev \
-    && apt clean all & rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && apt clean all && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN gem install bundler -v 1.17.3
 
